@@ -22,7 +22,7 @@ const Formulario = () => {
       //history.pushState("/Peliculas");
       Swal.fire({
         title: "Iniciaste sesion correctamente",
-        text: "Disfruta todas las peliculas",
+        text: "Disfruta de todas las peliculas disponibles",
         icon: "success",
         color: "#F97316",
         iconColor: "#F97316",
@@ -58,9 +58,11 @@ const Formulario = () => {
   return (
     <div
       id="formulario"
-      className="flex flex-col h-[872px] items-center justify-center"
+      className="flex flex-col h-[872px] items-center  bg-gray-900 justify-center"
     >
-      <h1 className="text-white text-5xl m-8">Iniciar sesión</h1>
+      <h1 className="text-white text-6xl m-8 hover:text-orange-500">
+        Iniciar sesión
+      </h1>
       <form className="flex flex-col">
         <label className="text-white text-xl px-2">Correo del usuario</label>
         <input
