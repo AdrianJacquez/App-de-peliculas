@@ -61,12 +61,12 @@ const Peliculas = () => {
             <div
               key={item.id}
               className="card relative rounded-md bg-orange-500 w-[210px] h-auto pt-4 flex flex-col 
-              justify-between items-center hover:scale-105 transition-transform hover:bg-orange-600"
+              justify-between items-center hover:scale-95 transition-transform hover:bg-orange-600"
             >
-              <div className="container-mx-auto w-5/6 overflow-hidden">
+              <div className="container-mx-auto w-5/6 overflow-hidden ">
                 {" "}
                 <img
-                  className="max-w-full h-auto rounded-lg hover:hover:scale-125 transition-transform hover:duration-300"
+                  className="max-w-full h-auto rounded-xl hover:hover:scale-125 transition-transform hover:duration-300 hover:rounded-xl"
                   src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                   alt={item.title || item.name}
                 />

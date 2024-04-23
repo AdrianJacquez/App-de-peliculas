@@ -28,7 +28,7 @@ const Formulario = () => {
         iconColor: "#F97316",
         confirmButtonColor: "#F97316", // Cambia el color del botón de confirmación
         confirmButtonText: "Ver ya",
-        background: "black",
+        background: "#111827",
       });
       navigate("/Peliculas");
     } else {
@@ -40,7 +40,7 @@ const Formulario = () => {
         iconColor: "#F97316",
         confirmButtonColor: "#F97316", // Cambia el color del botón de confirmación
         confirmButtonText: "Probar de nuevo",
-        background: "black",
+        background: "#111827",
       });
     }
   };
@@ -58,9 +58,9 @@ const Formulario = () => {
   return (
     <div
       id="formulario"
-      className="flex flex-col h-[872px] items-center  bg-gray-900 justify-center"
+      className="flex flex-col items-center h-[900px] justify-center bg-gray-900"
     >
-      <h1 className="text-white text-6xl m-8 hover:text-orange-500">
+      <h1 className="text-white text-6xl m-6 hover:text-orange-500">
         Iniciar sesión
       </h1>
       <form className="flex flex-col">
