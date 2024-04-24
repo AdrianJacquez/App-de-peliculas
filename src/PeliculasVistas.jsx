@@ -6,7 +6,9 @@ function Vistas() {
           {" "}
           Peliculas vistas
         </h1>
-        <div className="card-container flex flex-wrap justify-center h-auto mt-6 gap-4"></div>
+        <div className="card-container flex flex-wrap justify-center h-auto mt-6 gap-4">
+          Hola mundo
+        </div>
       </div>
     </>
   );

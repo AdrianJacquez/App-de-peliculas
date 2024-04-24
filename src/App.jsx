@@ -1,4 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
+//import IconContextProvider from "./IconContext.jsx";
 import Formulario from "./Formulario.jsx";
 import Peliculas from "./Peliculas.jsx";
 import Vistas from "./PeliculasVistas.jsx";

@@ -7,15 +7,16 @@ import { iosEyeOutline } from "react-icons-kit/ionicons/iosEyeOutline";
 import { iosEye } from "react-icons-kit/ionicons/iosEye";
 
 const Peliculas = () => {
+  //const context = useContext(CardStateContext);
+
   const [peliculasAll, setPeliculasAll] = useState([]);
-  const apiKey = "dd9105c17c9280fefc93cf84ed8094c8";
-  const timeWindow = "day"; // Puedes cambiar esto a 'week' o 'month' según tus necesidades
+  const apiKey = "dd9105c17c9280fefc93cf84ed8094c8"; // Puedes cambiar esto a 'week' o 'month' según tus necesidades
   const [favorito, setFavorito] = useState([]);
   const [vista, setVista] = useState([]);
 
   useEffect(() => {
     // Define la URL para la solicitud GET
-    const url = `https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${apiKey}`;
+    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 
     // Realiza la solicitud GET utilizando Axios
     axios
@@ -46,7 +47,28 @@ const Peliculas = () => {
     newVistas[index] = !newVistas[index];
     // Actualizar el estado de favoritos
     setVista(newVistas);
+    console.log(index);
   };
+
+  const meses = [
+    "ene",
+    "feb",
+    "mar",
+    "abr",
+    "may",
+    "jun",
+    "jul",
+    "ago",
+    "sep",
+    "oct",
+    "nov",
+    "dic",
+  ];
+
+  function formatFecha(fecha) {
+    const [year, month, day] = fecha.split("-");
+    return `${parseInt(day)} ${meses[parseInt(month) - 1]} ${year}`;
+  }
 
   return (
     <>
@@ -73,6 +95,7 @@ const Peliculas = () => {
               </div>
 
               <h1 className="text-lg m-2">{item.title || item.name}</h1>
+              <p>{formatFecha(item.release_date || item.name)}</p>
               <div className=" w-full flex justify-around">
                 <button onClick={() => handleVistaToggle(index)}>
                   {vista[index] ? (
