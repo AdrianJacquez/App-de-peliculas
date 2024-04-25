@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
-import Icon from "react-icons-kit";
-import { eyeMinus } from "react-icons-kit/icomoon/eyeMinus";
-
 import axios from "axios";
+import { heartBroken } from "react-icons-kit/icomoon/heartBroken";
+import { Icon } from "react-icons-kit";
 
-function Vistas() {
+function Favoritas() {
   const [peliculasAll, setPeliculasAll] = useState([]);
   const apiKey = "dd9105c17c9280fefc93cf84ed8094c8";
-  const [triggerVista, setTriggerVista] = useState(1);
+  const [trigger, setTrigger] = useState(1);
 
-  const storeCardsVistas =
-    JSON.parse(localStorage.getItem("cartasVistas")) || [];
-  console.log(storeCardsVistas);
+  const storeCardsFavoritas =
+    JSON.parse(localStorage.getItem("cartasFavoritas")) || [];
+  console.log(storeCardsFavoritas);
 
   useEffect(() => {
     // Define la URL para la solicitud GET
@@ -21,11 +20,11 @@ function Vistas() {
     axios
       .get(url)
       .then((response) => {
-        const peliculasVistas = response.data.results.filter((item) =>
-          storeCardsVistas.includes(item.id)
+        const PeliculasFavoritas = response.data.results.filter((item) =>
+          storeCardsFavoritas.includes(item.id)
         );
-        setPeliculasAll(peliculasVistas);
-        console.log(storeCardsVistas);
+        setPeliculasAll(PeliculasFavoritas);
+        console.log(storeCardsFavoritas);
       })
       .catch((error) => {
         // Maneja los errores aquí
@@ -34,13 +33,16 @@ function Vistas() {
   }, []);
 
   const handleDelete = (id) => {
-    const index = storeCardsVistas.indexOf(id);
+    const index = storeCardsFavoritas.indexOf(id);
 
-    storeCardsVistas.splice(index, 1);
-    setTriggerVista(triggerVista + 1);
-    console.log(triggerVista);
+    storeCardsFavoritas.splice(index, 1);
+    setTrigger(trigger + 1);
+    console.log(trigger);
 
-    localStorage.setItem("cartasVistas", JSON.stringify(storeCardsVistas));
+    localStorage.setItem(
+      "cartasFavoritas",
+      JSON.stringify(storeCardsFavoritas)
+    );
   };
 
   return (
@@ -48,7 +50,7 @@ function Vistas() {
       {" "}
       <div className="flex flex-col items-center bg-gray-900  ">
         <h1 className="text-white text-6xl m-6 hover:text-orange-500 ">
-          Peliculas Vistas
+          Peliculas Favoritas
         </h1>
 
         <div className="card-container flex flex-wrap justify-center h-auto mt-6 gap-4">
@@ -75,7 +77,7 @@ function Vistas() {
                   <Icon
                     className="hover:text-white"
                     size={60}
-                    icon={eyeMinus}
+                    icon={heartBroken}
                   ></Icon>
                 </button>
               </div>
@@ -87,4 +89,4 @@ function Vistas() {
   );
 }
 
-export default Vistas;
+export default Favoritas;

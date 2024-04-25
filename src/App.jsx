@@ -3,10 +3,10 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Formulario from "./Formulario.jsx";
 import Peliculas from "./Peliculas.jsx";
 import Vistas from "./PeliculasVistas.jsx";
+import Favoritas from "./PeliculasFavoritas.jsx";
 import Nav from "./Nav.jsx";
 
 //Componente con los elementos de la page para ver tus peliculas favoritas
-const Favoritas = () => <h1>Peliculas Favoritas</h1>;
 
 function App() {
   return (

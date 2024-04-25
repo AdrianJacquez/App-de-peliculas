@@ -7,12 +7,16 @@ import { iosEyeOutline } from "react-icons-kit/ionicons/iosEyeOutline";
 import { iosEye } from "react-icons-kit/ionicons/iosEye";
 
 const Peliculas = () => {
-  //const context = useContext(CardStateContext);
-
   const [peliculasAll, setPeliculasAll] = useState([]);
   const apiKey = "dd9105c17c9280fefc93cf84ed8094c8"; // Puedes cambiar esto a 'week' o 'month' según tus necesidades
-  const [favorito, setFavorito] = useState([]);
-  const [vista, setVista] = useState([]);
+  const [trigger, setTrigger] = useState(1);
+  const [triggerVista, setTriggerVista] = useState(1);
+
+  const storeCardsFavoritas =
+    JSON.parse(localStorage.getItem("cartasFavoritas")) || [];
+
+  const storeCardsVistas =
+    JSON.parse(localStorage.getItem("cartasVistas")) || [];
 
   useEffect(() => {
     // Define la URL para la solicitud GET
@@ -22,8 +26,8 @@ const Peliculas = () => {
     axios
       .get(url)
       .then((response) => {
-        console.log(response.data.results);
         setPeliculasAll(response.data.results);
+        console.log(response.data.results);
       })
       .catch((error) => {
         // Maneja los errores aquí
@@ -31,24 +35,46 @@ const Peliculas = () => {
       });
   }, []);
 
-  const handleFavoriteToggle = (index) => {
-    // Copiar el array de estados de favoritos
-    const newFavoritos = [...favorito];
-    // Cambiar el estado de favorito para la película en el índice dado
-    newFavoritos[index] = !newFavoritos[index];
-    // Actualizar el estado de favoritos
-    setFavorito(newFavoritos);
+  const handleVista = (id) => {
+    const index = storeCardsVistas.indexOf(id);
+
+    if (index === -1) {
+      // Si no está, lo agregamos al array utilizando el método setcartasFavoritas
+      storeCardsVistas.push(id);
+      setTriggerVista(triggerVista + 1);
+    } else {
+      storeCardsVistas.splice(index, 1);
+      setTriggerVista(triggerVista + 1);
+      console.log(triggerVista);
+    }
+    localStorage.setItem("cartasVistas", JSON.stringify(storeCardsVistas));
   };
 
-  const handleVistaToggle = (index) => {
-    // Copiar el array de estados de favoritos
-    const newVistas = [...vista];
-    // Cambiar el estado de favorito para la película en el índice dado
-    newVistas[index] = !newVistas[index];
-    // Actualizar el estado de favoritos
-    setVista(newVistas);
-    console.log(index);
+  const handleFavorita = (id) => {
+    const index = storeCardsFavoritas.indexOf(id);
+
+    if (index === -1) {
+      // Si no está, lo agregamos al array utilizando el método setcartasFavoritas
+      storeCardsFavoritas.push(id);
+      setTrigger(trigger + 1);
+    } else {
+      storeCardsFavoritas.splice(index, 1);
+      setTrigger(trigger + 1);
+      console.log(trigger);
+    }
+    localStorage.setItem(
+      "cartasFavoritas",
+      JSON.stringify(storeCardsFavoritas)
+    );
   };
+
+  useEffect(() => {
+    console.log("Array de cartas favoritas:", storeCardsFavoritas);
+  }, [trigger]);
+
+  useEffect(() => {
+    console.log("Array de cartas vistas:", storeCardsVistas);
+  }, [triggerVista]);
 
   const meses = [
     "ene",
@@ -79,7 +105,7 @@ const Peliculas = () => {
         </h1>
 
         <div className="card-container flex flex-wrap justify-center h-auto mt-6 gap-4">
-          {peliculasAll.map((item, index) => (
+          {peliculasAll.map((item) => (
             <div
               key={item.id}
               className="card relative rounded-md bg-orange-500 w-[210px] h-auto pt-4 flex flex-col 
@@ -93,20 +119,25 @@ const Peliculas = () => {
                   alt={item.title || item.name}
                 />
               </div>
-
               <h1 className="text-lg m-2">{item.title || item.name}</h1>
               <p>{formatFecha(item.release_date || item.name)}</p>
               <div className=" w-full flex justify-around">
-                <button onClick={() => handleVistaToggle(index)}>
-                  {vista[index] ? (
+                <button
+                  className="hover:scale-125 hover:transition-transform hover:duration-300 "
+                  onClick={() => handleVista(item.id)}
+                >
+                  {storeCardsVistas.includes(item.id) ? (
                     <Icon size={70} icon={iosEye} />
                   ) : (
                     <Icon size={70} icon={iosEyeOutline} />
                   )}
                 </button>
 
-                <button onClick={() => handleFavoriteToggle(index)}>
-                  {favorito[index] ? (
+                <button
+                  className="hover:scale-125 hover:transition-transform hover:duration-300 "
+                  onClick={() => handleFavorita(item.id)}
+                >
+                  {storeCardsFavoritas.includes(item.id) ? (
                     <Icon size={50} icon={iosHeart} />
                   ) : (
                     <Icon size={50} icon={iosHeartOutline} />
