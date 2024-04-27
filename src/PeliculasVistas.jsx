@@ -31,7 +31,7 @@ function Vistas() {
         // Maneja los errores aquí
         console.error("Error al realizar la solicitud:", error);
       });
-  }, []);
+  }, [triggerVista]);
 
   const handleDelete = (id) => {
     const index = storeCardsVistas.indexOf(id);
@@ -46,7 +46,7 @@ function Vistas() {
   return (
     <>
       {" "}
-      <div className="flex flex-col items-center bg-gray-900  ">
+      <div className="flex flex-col items-center bg-gray-900 w-full ">
         <h1 className="text-white text-6xl m-6 hover:text-orange-500 ">
           Peliculas Vistas
         </h1>

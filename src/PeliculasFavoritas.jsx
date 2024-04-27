@@ -30,13 +30,13 @@ function Favoritas() {
         // Maneja los errores aquí
         console.error("Error al realizar la solicitud:", error);
       });
-  }, []);
+  }, [trigger]);
 
   const handleDelete = (id) => {
     const index = storeCardsFavoritas.indexOf(id);
 
     storeCardsFavoritas.splice(index, 1);
-    setTrigger(trigger + 1);
+    setTrigger(trigger - 1);
     console.log(trigger);
 
     localStorage.setItem(
@@ -48,7 +48,7 @@ function Favoritas() {
   return (
     <>
       {" "}
-      <div className="flex flex-col items-center bg-gray-900  ">
+      <div className="flex flex-col items-center w-full bg-gray-900  ">
         <h1 className="text-white text-6xl m-6 hover:text-orange-500 ">
           Peliculas Favoritas
         </h1>
