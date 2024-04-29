@@ -1,4 +1,3 @@
-import "./Nav.css";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { clapperboard } from "react-icons-kit/entypo/clapperboard";
@@ -57,21 +56,35 @@ function Nav() {
             <li className=" flex  hover:scale-105 transition-transform  hover:text-white hover:duration-800">
               <Link to="/Peliculas">
                 {" "}
-                <Icon className="h-0" size={40} icon={clapperboard} /> PELICULAS
+                <Icon
+                  className="h-0 hidden sm:inline"
+                  size={32}
+                  icon={clapperboard}
+                />
+                <span className="hidden sm:inline">PELICULAS</span>
               </Link>
             </li>
 
             <li className="hover:scale-105 transition-transform  hover:text-white hover:duration-800">
               <Link to="/PeliculasVistas">
                 {" "}
-                <Icon className="h-0" size={60} icon={iosEye} />
-                VISTAS
+                <Icon
+                  className="h-0 hidden sm:inline"
+                  size={50}
+                  icon={iosEye}
+                />
+                <span className="hidden sm:inline">VISTAS</span>
               </Link>
             </li>
 
             <li className="hover:scale-105 transition-transform  hover:text-white hover:duration-800">
               <Link to="/PeliculasFavoritas">
-                <Icon className="h-0" size={48} icon={iosHeart} /> FAVORITAS{" "}
+                <Icon
+                  className="h-0 hidden sm:inline"
+                  size={36}
+                  icon={iosHeart}
+                />
+                <span className="hidden sm:inline">FAVORITAS</span>
               </Link>
             </li>
 
@@ -79,7 +92,8 @@ function Nav() {
               onClick={sweetAlertCerrar}
               className="hover:scale-105 transition-transform  hover:text-white hover:duration-800"
             >
-              <Icon className="h-0" size={44} icon={signOut} /> CERRAR SESION{" "}
+              <Icon className="h-0 hidden sm:inline" size={35} icon={signOut} />
+              <span className="hidden md:inline">CERRAR SESION</span>
             </li>
           </ul>
         </nav>

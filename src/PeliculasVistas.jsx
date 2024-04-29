@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Icon from "react-icons-kit";
 import { eyeMinus } from "react-icons-kit/icomoon/eyeMinus";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
@@ -8,6 +9,8 @@ function Vistas() {
   const [peliculasAll, setPeliculasAll] = useState([]);
   const apiKey = "dd9105c17c9280fefc93cf84ed8094c8";
   const [triggerVista, setTriggerVista] = useState(1);
+  const navigate = useNavigate();
+  let storeCardInfo = JSON.parse(localStorage.getItem("cartaInfo")) || [];
 
   const storeCardsVistas =
     JSON.parse(localStorage.getItem("cartasVistas")) || [];
@@ -33,6 +36,14 @@ function Vistas() {
       });
   }, [triggerVista]);
 
+  const handleInfo = (id) => {
+    storeCardInfo = [];
+    storeCardInfo.push(id);
+    console.log(storeCardInfo);
+    localStorage.setItem("cartaInfo", JSON.stringify(storeCardInfo));
+    navigate("/PeliculaInfo");
+  };
+
   const handleDelete = (id) => {
     const index = storeCardsVistas.indexOf(id);
 
@@ -47,7 +58,7 @@ function Vistas() {
     <>
       {" "}
       <div className="flex flex-col items-center bg-gray-900 w-full ">
-        <h1 className="text-white text-6xl m-6 hover:text-orange-500 ">
+        <h1 className="text-white text-center text-6xl m-6 hover:text-orange-500 ">
           Peliculas Vistas
         </h1>
 
@@ -58,7 +69,12 @@ function Vistas() {
               className="card relative rounded-md bg-orange-500 w-[210px] h-auto pt-4 flex flex-col 
               justify-between items-center hover:scale-95 transition-transform hover:bg-orange-600"
             >
-              <div className="container-mx-auto w-5/6 overflow-hidden ">
+              <div
+                onClick={() => {
+                  handleInfo(item.id);
+                }}
+                className="container-mx-auto w-5/6 overflow-hidden "
+              >
                 {" "}
                 <img
                   className="max-w-full h-auto rounded-xl hover:hover:scale-125 transition-transform hover:duration-300 hover:rounded-xl"

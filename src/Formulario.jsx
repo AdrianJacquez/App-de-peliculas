@@ -58,9 +58,9 @@ const Formulario = () => {
   return (
     <div
       id="formulario"
-      className="flex flex-col items-center h-[900px] justify-center bg-gray-900"
+      className="flex flex-col items-center h-full justify-center bg-gray-900"
     >
-      <h1 className="text-white text-6xl m-6 hover:text-orange-500">
+      <h1 className="text-white text-6xl text-center m-6 hover:text-orange-500">
         Iniciar sesión
       </h1>
       <form className="flex flex-col">

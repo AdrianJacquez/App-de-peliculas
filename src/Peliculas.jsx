@@ -112,7 +112,7 @@ const Peliculas = () => {
     <>
       {" "}
       <div className="flex flex-col items-center bg-gray-900 w-full ">
-        <h1 className="text-white text-6xl m-6 hover:text-orange-500 ">
+        <h1 className="text-white text-center text-6xl m-6 hover:text-orange-500 ">
           Catalogo de peliculas
         </h1>
 

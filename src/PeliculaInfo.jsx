@@ -37,12 +37,12 @@ const PeliculaInfo = () => {
 
   return (
     <>
-      <div className="w-full h-full">
+      <div className="w-full h-full bg-gray-900 ">
         {peliculasAll.map((item) => (
           <div
             key={item.id}
-            className="card  rounded-md bg-orange-500 w-auto h-auto p-2 m-6 mb-0 flex flex-row 
-              justify-between "
+            className="card flex flex-col rounded-md bg-orange-500 w-auto h-auto p-2 m-6 mb-0 items-center  
+               lg:flex lg:flex-row lg:items-start"
           >
             <div>
               <button
@@ -56,12 +56,12 @@ const PeliculaInfo = () => {
             <div className="container-mx-auto w-auto  m-5  ">
               {" "}
               <img
-                className="w-auto h-[750px] rounded-xl hover:hover:scale-95 transition-transform hover:duration-300 "
+                className="w-auto h-auto rounded-xl hover:hover:scale-95 transition-transform hover:duration-300 md:h-full "
                 src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                 alt={item.title}
               />
             </div>
-            <div className="w-[1200px] h-auto m-5">
+            <div className="w-auto h-auto m-5 md:w-full">
               <h1 className="text-5xl m-2 bg-gray-900 text-orange-600 p-2 rounded-2xl">
                 {item.title}
               </h1>
