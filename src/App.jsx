@@ -14,7 +14,7 @@ function App() {
     <>
       <Nav />
 
-      <div className="App ">
+      <div className="App w-full  ">
         <Routes>
           <Route path="/" element={<Formulario />} />
           <Route path="/Peliculas" element={<Peliculas />} />

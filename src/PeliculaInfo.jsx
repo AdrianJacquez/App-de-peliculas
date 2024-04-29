@@ -21,6 +21,7 @@ const PeliculaInfo = () => {
         const PeliculaInfo = response.data.results.filter((item) =>
           storeCardInfo.includes(item.id)
         );
+        console.log(response.data.results);
         setPeliculasAll(PeliculaInfo);
         console.log(storeCardInfo);
       })
@@ -36,11 +37,11 @@ const PeliculaInfo = () => {
 
   return (
     <>
-      <div className="w-full">
+      <div className="w-full h-full">
         {peliculasAll.map((item) => (
           <div
             key={item.id}
-            className="card relative rounded-md bg-orange-500 w-[1000px] h-auto p-4 m-6 flex flex-row 
+            className="card  rounded-md bg-orange-500 w-auto h-auto p-2 m-6 mb-0 flex flex-row 
               justify-between "
           >
             <div>
@@ -52,17 +53,38 @@ const PeliculaInfo = () => {
                 <Icon size={32} icon={undo2}></Icon> Volver
               </button>
             </div>
-            <div className="container-mx-auto w-5/6 m-5  ">
+            <div className="container-mx-auto w-auto  m-5  ">
               {" "}
               <img
-                className="max-w-full h-auto rounded-xl hover:hover:scale-95 transition-transform hover:duration-300 "
+                className="w-auto h-[750px] rounded-xl hover:hover:scale-95 transition-transform hover:duration-300 "
                 src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                 alt={item.title}
               />
             </div>
-            <div className="w-[600px] h-full m-5">
-              <h1 className="text-5xl m-2">{item.title}</h1>
-              <p className="text-xl"> DESCRIPCION: {item.overview}</p>
+            <div className="w-[1200px] h-auto m-5">
+              <h1 className="text-5xl m-2 bg-gray-900 text-orange-600 p-2 rounded-2xl">
+                {item.title}
+              </h1>
+              <p className="text-xl bg-gray-900 text-orange-600 p-2 rounded-2xl  m-2">
+                {" "}
+                DESCRIPCION: {item.overview}
+              </p>
+              <p className="text-xl bg-gray-900 text-orange-600 p-2 rounded-2xl m-2">
+                {" "}
+                VISTAS: {item.popularity}
+              </p>
+              <p className="text-xl bg-gray-900 text-orange-600 p-2 rounded-2xl m-2">
+                {" "}
+                FAVORITOS: {item.vote_average}
+              </p>
+              <p className="text-xl bg-gray-900 text-orange-600 p-2 rounded-2xl m-2">
+                {" "}
+                FECHA DE ESTRENO: {item.release_date}
+              </p>
+              <p className="text-xl bg-gray-900 text-orange-600 p-2 rounded-2xl m-2">
+                {" "}
+                LENGUAGE ORIGINAL: {item.original_language}
+              </p>
             </div>
           </div>
         ))}

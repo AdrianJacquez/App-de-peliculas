@@ -1,3 +1,4 @@
+import "./Nav.css";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { clapperboard } from "react-icons-kit/entypo/clapperboard";
@@ -45,7 +46,10 @@ function Nav() {
   return (
     <>
       {location.pathname !== "/" && (
-        <nav className="Navegador text-decoration-none w-full h-[60px] bg-orange-500 ">
+        <nav
+          className="Navegador text-decoration-none w-full h-[60px] bg-orange-500 
+         "
+        >
           <ul
             id="Opciones"
             className="p-6 w-full h-full text-2xl flex justify-between items-center"
