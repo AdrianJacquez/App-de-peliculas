@@ -9,7 +9,7 @@ const PeliculaInfo = () => {
   const apiKey = "dd9105c17c9280fefc93cf84ed8094c8";
   const navigate = useNavigate();
   const storeCardInfo = JSON.parse(localStorage.getItem("cartaInfo")) || [];
-  console.log(storeCardInfo);
+
   useEffect(() => {
     // Define la URL para la solicitud GET
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
@@ -21,9 +21,7 @@ const PeliculaInfo = () => {
         const PeliculaInfo = response.data.results.filter((item) =>
           storeCardInfo.includes(item.id)
         );
-        console.log(response.data.results);
         setPeliculasAll(PeliculaInfo);
-        console.log(storeCardInfo);
       })
       .catch((error) => {
         // Maneja los errores aquí
@@ -31,6 +29,7 @@ const PeliculaInfo = () => {
       });
   }, []);
 
+  //al darle click al boton de volver te redirije a la page de peliculas
   const handleVolver = () => {
     navigate("/Peliculas");
   };

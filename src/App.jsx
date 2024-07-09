@@ -12,10 +12,13 @@ import Nav from "./Nav.jsx";
 function App() {
   return (
     <>
+    {/*se renderiza el nav llamandolo */}
       <Nav />
 
       <div className="App w-full  ">
+        {/*Routes es para contener las diferentes Route */}
         <Routes>
+          {/*se crean las iferentes route, con referencia a su repecivo elemento*/}
           <Route path="/" element={<Formulario />} />
           <Route path="/Peliculas" element={<Peliculas />} />
           <Route path="/PeliculasVistas" element={<Vistas />} />

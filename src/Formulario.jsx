@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { eyeBlocked } from "react-icons-kit/icomoon/eyeBlocked";
@@ -12,14 +12,26 @@ const Formulario = () => {
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeBlocked);
 
+  useEffect(() => {
+    Swal.fire({
+      title: "CORREO Y CONTRASEÑA",
+      text: "CORREO: user@gmail.com / CONTRASEÑA: user123",
+      icon: "info",
+      color: "#F97316",
+      iconColor: "#F97316",
+      confirmButtonColor: "#F97316", // Cambia el color del botón de confirmación
+      confirmButtonText: "Ver ya",
+      background: "#111827",
+    });
+  }, []);
+
   const handleSubmit = (e) => {
+    //el e.PreventDefaul evita la propagacion y acciones predeterminada del navegador
     e.preventDefault();
-    if (
-      userEmail === "adrianlerma@gmail.com" &&
-      userPassword === "pipipopo123"
-    ) {
+    //este if pregunta si las variables son completamente iguales a los datos entre comillas
+    if (userEmail === "user@gmail.com" && userPassword === "user123") {
       // Credenciales correctas, redirigir a otra página
-      //history.pushState("/Peliculas");
+      //se muestra una alert para confirmar y luego se redirige al usuario a la page peliculas
       Swal.fire({
         title: "Iniciaste sesion correctamente",
         text: "Disfruta de todas las peliculas disponibles",
@@ -32,6 +44,7 @@ const Formulario = () => {
       });
       navigate("/Peliculas");
     } else {
+      //si no son correctos muestra un aler de error y informando el error
       Swal.fire({
         icon: "error",
         title: "Lo siento",
@@ -45,6 +58,7 @@ const Formulario = () => {
     }
   };
 
+  //este handle es llamado cuando se le da click al ojo en el input de tipo password el cual esconde o muestra su contenido, si es tipo password cambia al ojo abierto y cambia su tipo a text, y si no cambia el icono a ojobloqueado y cambia su tipo a password, al ser tipo password el contenido se mustra como puntos y al ser text se muestra como texto comun
   const handleToggle = () => {
     if (type === "password") {
       setIcon(eye);
@@ -58,7 +72,7 @@ const Formulario = () => {
   return (
     <div
       id="formulario"
-      className="flex flex-col items-center h-full justify-center bg-gray-900"
+      className="flex flex-col items-center h- justify-center bg-gray-900"
     >
       <h1 className="text-white text-6xl text-center m-6 hover:text-orange-500">
         Iniciar sesión

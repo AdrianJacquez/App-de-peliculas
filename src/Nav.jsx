@@ -11,7 +11,8 @@ function Nav() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const sweetAlertCerrar = () => {
+  //despues de clickear la opcion de cerrar sesion muestra un alerta de comfirmacion o cancelacion, al comfirmar muestra un mensaje para preguntar si esta seguro, al dar que si el usuario es dirigido con navigate al login y sele muestra un mensaje de que cerro con exito, en caso de arrepentirse solo vuelve a dodne estaba antes
+  const handleAlertCerrar = () => {
     Swal.fire({
       title: "Estas seguro que quieres cerrar sesion?",
       icon: "question",
@@ -44,6 +45,7 @@ function Nav() {
 
   return (
     <>
+     {/*este condiciona el mosrtar el navegador solo si la route no es igual a la del login, en la cual no se tiene que mostrar el nav */}
       {location.pathname !== "/" && (
         <nav
           className="Navegador text-decoration-none w-full h-[60px] bg-orange-500 
@@ -87,9 +89,9 @@ function Nav() {
                 <span className="hidden sm:inline">FAVORITAS</span>
               </Link>
             </li>
-
+<a href=""></a>
             <li
-              onClick={sweetAlertCerrar}
+              onClick={handleAlertCerrar}
               className="hover:scale-105 transition-transform  hover:text-white hover:duration-800"
             >
               <Icon className="h-0 hidden sm:inline" size={35} icon={signOut} />

@@ -14,8 +14,9 @@ const Peliculas = () => {
   const [triggerVista, setTriggerVista] = useState(1);
   const navigate = useNavigate();
 
+  //variable que se guardara en el localstorage,es let por que su valor cambiara y se nesecita que solo guarde un valor
   let storeCardInfo = JSON.parse(localStorage.getItem("cartaInfo")) || [];
-
+  //tambien variables pero de tipo array que se guardan el el local con los id de la peliculas marcadas como vistas o favoritas
   const storeCardsFavoritas =
     JSON.parse(localStorage.getItem("cartasFavoritas")) || [];
 
@@ -26,12 +27,11 @@ const Peliculas = () => {
     // Define la URL para la solicitud GET
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 
-    // Realiza la solicitud GET utilizando Axios
+    // Realiza la solicitud GET utilizando Axios la cual es un abliblioteca que facilita el manejo de una api
     axios
       .get(url)
       .then((response) => {
         setPeliculasAll(response.data.results);
-        console.log(response.data.results);
       })
       .catch((error) => {
         // Maneja los errores aquí
@@ -39,15 +39,21 @@ const Peliculas = () => {
       });
   }, []);
 
+  //mostar la info de una pelicula al darle click a la imagen
   const handleInfo = (id) => {
+    //se vacia el array tenga o no contenido
     storeCardInfo = [];
+    //se le da un id al array
     storeCardInfo.push(id);
-    console.log(storeCardInfo);
+    //se actualiza el valor del array en el local
     localStorage.setItem("cartaInfo", JSON.stringify(storeCardInfo));
+    //se redirige al usuario al la page que mostrara la info del la pelicula
     navigate("/PeliculaInfo");
   };
 
+  //agrega el id de la peli vista a un array en el local
   const handleVista = (id) => {
+    //recibe un id,
     const index = storeCardsVistas.indexOf(id);
 
     if (index === -1) {
@@ -55,13 +61,15 @@ const Peliculas = () => {
       storeCardsVistas.push(id);
       setTriggerVista(triggerVista + 1);
     } else {
+      //y si esta, lo eliminamos del el array utilizando el metodo splice
       storeCardsVistas.splice(index, 1);
-      setTriggerVista(triggerVista + 1);
-      console.log(triggerVista);
+      setTriggerVista(triggerVista - 1);
     }
+    //se actualiza el volor del array en el local
     localStorage.setItem("cartasVistas", JSON.stringify(storeCardsVistas));
   };
 
+  //es igual que el handleVista
   const handleFavorita = (id) => {
     const index = storeCardsFavoritas.indexOf(id);
 
@@ -80,14 +88,7 @@ const Peliculas = () => {
     );
   };
 
-  useEffect(() => {
-    console.log("Array de cartas favoritas:", storeCardsFavoritas);
-  }, [trigger]);
-
-  useEffect(() => {
-    console.log("Array de cartas vistas:", storeCardsVistas);
-  }, [triggerVista]);
-
+  //este y la funcion debajo de este solo son una funcion para cambiar el formato de la fecha
   const meses = [
     "ene",
     "feb",
@@ -117,6 +118,7 @@ const Peliculas = () => {
         </h1>
 
         <div className="card-container flex flex-wrap justify-center h-auto mt-6 gap-4">
+          {/*renderiza cada card*/}
           {peliculasAll.map((item) => (
             <div
               key={item.id}

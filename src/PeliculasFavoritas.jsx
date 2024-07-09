@@ -13,7 +13,6 @@ function Favoritas() {
 
   const storeCardsFavoritas =
     JSON.parse(localStorage.getItem("cartasFavoritas")) || [];
-  console.log(storeCardsFavoritas);
 
   useEffect(() => {
     // Define la URL para la solicitud GET
@@ -27,7 +26,6 @@ function Favoritas() {
           storeCardsFavoritas.includes(item.id)
         );
         setPeliculasAll(PeliculasFavoritas);
-        console.log(storeCardsFavoritas);
       })
       .catch((error) => {
         // Maneja los errores aquí
